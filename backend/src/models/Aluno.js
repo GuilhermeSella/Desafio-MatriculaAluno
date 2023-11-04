@@ -20,6 +20,6 @@ const Aluno = sequelize.define('Aluno', {
         type:DataTypes.BIGINT,
         unique:true
     }
-})
+}, {timestamps:false})
 
 module.exports = Aluno
