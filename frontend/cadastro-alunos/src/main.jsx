@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import consultaAlunos from './pages/consultaAlunos.jsx'
-import cadastroAlunos from './pages/cadastroAlunos.jsx'
+import ConsultaAlunos from '../src/pages/ConsultaAlunos.jsx'
+import CadastroAlunos from '../src/pages/CadastroAlunos.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -13,11 +13,11 @@ const routes = createBrowserRouter([
     children:[
       {
         path:"/consultaAlunos",
-        element: <consultaAlunos />
+        element: <ConsultaAlunos />
       },
       {
         path:"/cadastroAlunos",
-        element: <cadastroAlunos />
+        element: <CadastroAlunos />
       },
     ]
   },
