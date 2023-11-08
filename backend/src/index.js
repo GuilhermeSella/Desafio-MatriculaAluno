@@ -1,12 +1,15 @@
 const express = require("express")
 const sequelize = require("../src/database/conn")
 const router = require("../src/routes/router")
+const cors = require("cors")
 
 const app = express()
 const port = 8000
 
 app.use(express.json())
 app.use("", router)
+app.use(cors())
+
 
 
 

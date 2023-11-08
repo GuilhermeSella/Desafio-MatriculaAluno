@@ -1,9 +1,14 @@
 import React from 'react';
+import useGetAlunos from '../../hooks/useGetAlunos';
 
 function TabelaAlunos(props) {
+
+    // const {data, error} = useGetAlunos()
+    // console.log(data)
+
     return (
         <section >
-                <table class="w-full ">
+                <table className="w-full ">
                     <thead className='bg-zinc-300 '>
                         <tr>
                             <th className='py-4'>RA</th>
