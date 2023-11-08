@@ -10,13 +10,15 @@ export const AlunoProvider = ({children})=>{
     const raAluno = useRef();
     const cpfAluno = useRef();
 
+    const nomeAlunoSearch = useRef("");
 
     return(
         <AlunoContext.Provider value={{
             nomeAluno,
             emailAluno,
             raAluno,
-            cpfAluno
+            cpfAluno,
+            nomeAlunoSearch
         }}>
             {children}
         </AlunoContext.Provider>

@@ -8,7 +8,13 @@ const port = 8000
 
 app.use(express.json())
 app.use("", router)
-app.use(cors())
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }
+ 
+app.use(cors(corsOptions))
 
 
 

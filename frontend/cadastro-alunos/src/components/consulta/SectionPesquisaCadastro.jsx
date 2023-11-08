@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AlunoContext } from '../../contexts/AlunoContext';
+import useSearchAluno from '../../hooks/useSearchAluno';
 
 function SectionPesquisaCadastro(props) {
+
+    const {nomeAlunoSearch} = useContext(AlunoContext)
+
+    const mutation = useSearchAluno();
+
     return (
         <section className='flex w-full justify-evenly items-center py-40 h-60 '>
 
 
             <div className='flex items-center w-96'>
-                <input className='border py-2 w-full px-3' type="text" placeholder='Digite sua busca' />
-                <button className='bg-zinc-200 p-2.5 rounded-br-sm font-semibold '>Pesquisar</button>
+                <input className='border py-2 w-full px-3' type="text" placeholder='Digite sua busca' ref={nomeAlunoSearch}/>
+                <button className='bg-zinc-200 p-2.5 rounded-br-sm font-semibold' onClick={()=>mutation.mutate()}>Pesquisar</button>
             </div>
 
            <div>

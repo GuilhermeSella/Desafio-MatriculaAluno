@@ -1,16 +1,30 @@
+const { Op } = require("sequelize");
 const Aluno = require("../models/Aluno")
 
 
 class UserController{
 
-    async ListarAlunos(req,res){
+    static async ListarAlunos(req,res){
         const alunos = await Aluno.findAll();
         res.status(200).json({
             alunos
         }) 
     }
 
-    async CadastrarAluno(req,res){
+    static async ListarAlunoPorNome(req,res){
+
+        const nomeAluno = req.params.nomeAluno;
+
+        const alunos = await Aluno.findAll({
+            where:{
+                nome: {[Op.like] : `${nomeAluno}%`}
+            }
+        })
+
+        return res.status(200).json({"message":"Alunos encontrados:", alunos})
+    }
+
+    static async CadastrarAluno(req,res){
         const {nome, email, RA, CPF} = req.body;
 
         const aluno = Aluno.create({
@@ -26,7 +40,7 @@ class UserController{
 
     }
 
-    async EditarAluno(req,res){
+    static async EditarAluno(req,res){
         const RA = req.params.RA;
         const {nome, email} = req.body;
 
@@ -38,7 +52,7 @@ class UserController{
         res.status(200).json({message: "Aluno Atualizado!"})
     }
 
-    async ExcluirAluno(req,res){
+    static async ExcluirAluno(req,res){
         const RA = req.params.RA;
 
         await Aluno.destroy({where:{RA:RA}})

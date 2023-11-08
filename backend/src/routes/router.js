@@ -3,15 +3,17 @@ const router = express.Router()
 const AlunoController = require("../controllers/AlunoController")
 
 
-const alunoController = new AlunoController()
 
-router.get("/alunos", alunoController.ListarAlunos)
 
-router.post("/aluno", alunoController.CadastrarAluno)
+router.get("/alunos", AlunoController.ListarAlunos)
 
-router.put("/aluno/:RA", alunoController.EditarAluno)
+router.get("/aluno/:nomeAluno", AlunoController.ListarAlunoPorNome )
 
-router.delete("/aluno/:RA", alunoController.ExcluirAluno)
+router.post("/aluno", AlunoController.CadastrarAluno)
+
+router.put("/aluno/:RA", AlunoController.EditarAluno)
+
+router.delete("/aluno/:RA", AlunoController.ExcluirAluno)
 
 
 module.exports = router;
