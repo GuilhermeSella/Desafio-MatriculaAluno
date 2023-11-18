@@ -6,12 +6,12 @@ import { AlunoContext } from "../contexts/AlunoContext";
 
 const useSearchAluno = ()=>{
 
-    const {nomeAlunoSearch} = useContext(AlunoContext);
+    const {nomeAlunoSearch, setDataTable} = useContext(AlunoContext);
 
     const mutation = useMutation({
         mutationFn : async()=>{
-            return axios.get(`http://localhost:8000/aluno/${nomeAlunoSearch}`)
-            .then((res)=>console.log(res.data))
+            return axios.get(`http://localhost:8000/aluno/${nomeAlunoSearch.current.value}`)
+            .then((res)=>setDataTable(res.data))
         }
     })
 

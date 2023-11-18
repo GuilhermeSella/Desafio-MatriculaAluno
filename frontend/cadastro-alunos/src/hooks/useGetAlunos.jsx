@@ -4,12 +4,13 @@ import { useQuery } from "react-query";
 
 const useGetAlunos = ()=>{
 
-
-    const {error, data} = useQuery("getAlunos", ()=>{
-        return axios.get("http://localhost:8000/alunos")
+    const {error, data, isLoading} = useQuery("getAlunos", async()=>{
+        
+        return await axios.get("http://localhost:8000/alunos")
     })
 
-    return {data, error};
+
+    return {data, error, isLoading};
     
 }
 

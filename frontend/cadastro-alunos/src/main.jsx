@@ -5,6 +5,7 @@ import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import ConsultaAlunos from '../src/pages/ConsultaAlunos.jsx'
 import CadastroAlunos from './pages/cadastroAlunos.jsx'
+import EditarAluno from './pages/EditarAluno.jsx'
 import { AlunoProvider } from './contexts/AlunoContext.jsx'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
@@ -24,6 +25,10 @@ const routes = createBrowserRouter([
         path:"/cadastroAlunos",
         element: <CadastroAlunos />
       },
+      {
+        path:"/editarAluno/:nome/:email/:ra/:cpf",
+        element: <EditarAluno />
+      }
     ]
   },
  

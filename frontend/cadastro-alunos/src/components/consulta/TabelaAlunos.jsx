@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useGetAlunos from '../../hooks/useGetAlunos';
+import { Link } from 'react-router-dom';
+import { AlunoContext } from '../../contexts/AlunoContext';
 
 function TabelaAlunos(props) {
 
-    // const {data, error} = useGetAlunos()
-    // console.log(data)
+    const {dataTable, setDataTable} = useContext(AlunoContext)
+
+    const {data, error, isLoading} = useGetAlunos()
+
+    if(isLoading){
+        return (
+            <h1>Carregando Alunos</h1>
+        )
+    }
 
     return (
         <section >
@@ -19,52 +28,28 @@ function TabelaAlunos(props) {
                     </thead>
                     <tbody className='text-center bg-zinc-100 '>
 
-                        <tr>
-                            <td className='py-4'>11000 </td>
-                            <td>Malcolm Lockyer</td>
-                            <td>19634534634671</td>
-                            <td>[Editar] [Excluir]</td>
-                        </tr>
-                        <tr>
-                            <td className='py-4'>11000 </td>
-                            <td>Malcolm Lockyer</td>
-                            <td>19634534634671</td>
-                            <td>[Editar] [Excluir]</td>
-                        </tr>
-                        <tr>
-                            <td className='py-4'>11000 </td>
-                            <td>Malcolm Lockyer</td>
-                            <td>19634534634671</td>
-                            <td>[Editar] [Excluir]</td>
-                        </tr>
-                        <tr>
-                            <td className='py-4'>11000 </td>
-                            <td>Malcolm Lockyer</td>
-                            <td>19634534634671</td>
-                            <td>[Editar] [Excluir]</td>
-                        </tr>
-                        <tr>
-                            <td className='py-4'>11000 </td>
-                            <td>Malcolm Lockyer</td>
-                            <td>19634534634671</td>
-                            <td>[Editar] [Excluir]</td>
-                        </tr>
-                        <tr>
-                            <td className='py-4'>11000 </td>
-                            <td>Malcolm Lockyer</td>
-                            <td>19634534634671</td>
-                            <td>[Editar] [Excluir]</td>
-                        </tr>
-
-                        <tr>
-                            <td className='py-4'>11000 </td>
-                            <td>Malcolm Lockyer</td>
-                            <td>19634534634671</td>
-                            <td>[Editar] [Excluir]</td>
-                        </tr>
-
-                       
-
+                        { dataTable.length == 0 ?  data.data.alunos.map(aluno => (
+                            <tr key={aluno.RA}>
+                                <td className='py-4'>{aluno.RA} </td>
+                                <td>{aluno.nome}</td>
+                                <td>{aluno.CPF}</td>
+                                <td>
+                                    <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
+                                    <Link>[Excluir]</Link>
+                                </td>
+                            </tr>
+                        )) :  dataTable.alunos.map(aluno => (
+                            <tr key={aluno.RA}>
+                                <td className='py-4'>{aluno.RA} </td>
+                                <td>{aluno.nome}</td>
+                                <td>{aluno.CPF}</td>
+                                <td>
+                            <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
+                                    <Link>[Excluir]</Link>
+                                </td>
+                            </tr>
+                        ))}
+                        
                     </tbody>
                 </table>
         </section>

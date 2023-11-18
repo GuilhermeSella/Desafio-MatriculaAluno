@@ -1,37 +1,37 @@
 import React, { useContext } from 'react';
 import { AlunoContext } from '../../contexts/AlunoContext';
-import useSubmitAluno from '../../hooks/useSubmitAluno'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import useUpdateAluno from '../../hooks/useUpdateAluno';
 
 
-function FormCadastroAluno(props) {
+function FormEditAluno(props) {
 
-    const {nomeAluno, emailAluno, raAluno, cpfAluno} = useContext(AlunoContext);
+    const {nomeAluno, emailAluno} = useContext(AlunoContext);
 
-    const {mutation} = useSubmitAluno();
-
+    const {mutation} = useUpdateAluno();
+    const {nome, email, ra, cpf} = useParams()
 
     return (
         <section className='w-full h-full flex flex-col py-32 gap-6 justify-center items-center'>
 
             <div className='flex items-center w-8/12'>
                 <label className='bg-zinc-200 py-2 w-60 px-6 rounded'>Nome</label>
-                <input ref={nomeAluno}  type="text" className=' w-full border rounded py-2 px-2' placeholder='Informe o nome completo:'/>
+                <input ref={nomeAluno} value={nome}  type="text" className=' w-full border rounded py-2 px-2' placeholder='Informe o nome completo:'/>
             </div>
 
             <div className='flex items-center w-8/12'>
                 <label className='bg-zinc-200 py-2 w-60 px-6 rounded'>Email</label>
-                <input ref={emailAluno} type="email" className=' w-full border rounded py-2 px-2' placeholder='Informe apenas um e-mail:'/>
+                <input ref={emailAluno} value={email} type="email" className=' w-full border rounded py-2 px-2' placeholder='Informe apenas um e-mail:'/>
             </div>
 
             <div className='flex items-center w-8/12'>
                 <label className='bg-zinc-200 py-2 w-60 px-6 rounded'>RA</label>
-                <input ref={raAluno} type="number" className=' w-full border rounded py-2 px-2' placeholder='Informe o registro acadêmico:'/>
+                <input value={ra} readOnly type="number" className=' w-full border rounded py-2 px-2' placeholder='Informe o registro acadêmico:'/>
             </div>
 
             <div className='flex items-center w-8/12'>
                 <label className='bg-zinc-200 py-2 w-60 px-6 rounded'>CPF</label>
-                <input ref={cpfAluno} type="number" className=' w-full border rounded py-2 px-2' placeholder='Informe o número de documento:'/>
+                <input value={cpf} readOnly type="number" className=' w-full border rounded py-2 px-2' placeholder='Informe o número de documento:'/>
             </div>
 
 
@@ -46,4 +46,4 @@ function FormCadastroAluno(props) {
     );
 }
 
-export default FormCadastroAluno;
+export default FormEditAluno;

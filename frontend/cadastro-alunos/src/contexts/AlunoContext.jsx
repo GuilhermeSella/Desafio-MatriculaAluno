@@ -5,11 +5,12 @@ export const AlunoContext = createContext();
 export const AlunoProvider = ({children})=>{
 
 
+    const [dataTable, setDataTable] = useState([])
+
     const nomeAluno = useRef("");
     const emailAluno = useRef("");
     const raAluno = useRef();
     const cpfAluno = useRef();
-
     const nomeAlunoSearch = useRef("");
 
     return(
@@ -18,7 +19,9 @@ export const AlunoProvider = ({children})=>{
             emailAluno,
             raAluno,
             cpfAluno,
-            nomeAlunoSearch
+            nomeAlunoSearch,
+            dataTable,
+            setDataTable
         }}>
             {children}
         </AlunoContext.Provider>
