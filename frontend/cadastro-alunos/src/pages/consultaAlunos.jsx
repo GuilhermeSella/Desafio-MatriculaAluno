@@ -5,7 +5,7 @@ import ModalDelete from '../components/consulta/ModalDelete';
 
 function consultaAlunos(props) {
 
-    const [ isOpen, setIsOpen] = useState()
+    const [ isOpen, setIsOpen] = useState(false)
     
 
     return (
