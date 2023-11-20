@@ -43,7 +43,7 @@ class UserController{
     static async EditarAluno(req,res){
         const RA = req.params.RA;
         const {nome, email} = req.body;
-
+        
         await Aluno.update({
             nome: nome,
             email:email,   

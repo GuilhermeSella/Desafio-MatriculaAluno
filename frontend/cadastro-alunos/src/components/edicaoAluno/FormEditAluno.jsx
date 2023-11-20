@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AlunoContext } from '../../contexts/AlunoContext';
 import { Link, useParams } from 'react-router-dom';
 import useUpdateAluno from '../../hooks/useUpdateAluno';
@@ -6,22 +6,25 @@ import useUpdateAluno from '../../hooks/useUpdateAluno';
 
 function FormEditAluno(props) {
 
+    
     const {nomeAluno, emailAluno} = useContext(AlunoContext);
-
-    const {mutation} = useUpdateAluno();
-    const {nome, email, ra, cpf} = useParams()
+    const {nome, email, ra, cpf} = useParams();
+    const [inputNome, setInputNome] = useState(nome);
+    const [inputEmail, setInputEmail] = useState(email);
+    
+    const mutation = useUpdateAluno(inputNome, inputEmail);
 
     return (
         <section className='w-full h-full flex flex-col py-32 gap-6 justify-center items-center'>
 
             <div className='flex items-center w-8/12'>
                 <label className='bg-zinc-200 py-2 w-60 px-6 rounded'>Nome</label>
-                <input ref={nomeAluno} value={nome}  type="text" className=' w-full border rounded py-2 px-2' placeholder='Informe o nome completo:'/>
+                <input ref={nomeAluno} value={inputNome} onChange={(e)=>setInputNome(e.target.value)}  type="text" className=' w-full border rounded py-2 px-2' placeholder='Informe o nome completo:'/>
             </div>
 
             <div className='flex items-center w-8/12'>
                 <label className='bg-zinc-200 py-2 w-60 px-6 rounded'>Email</label>
-                <input ref={emailAluno} value={email} type="email" className=' w-full border rounded py-2 px-2' placeholder='Informe apenas um e-mail:'/>
+                <input ref={emailAluno} value={inputEmail} onChange={(e)=>setInputEmail(e.target.value)} type="email" className=' w-full border rounded py-2 px-2' placeholder='Informe apenas um e-mail:'/>
             </div>
 
             <div className='flex items-center w-8/12'>
