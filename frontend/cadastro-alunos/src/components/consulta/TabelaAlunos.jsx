@@ -3,7 +3,7 @@ import useGetAlunos from '../../hooks/useGetAlunos';
 import { Link } from 'react-router-dom';
 import { AlunoContext } from '../../contexts/AlunoContext';
 
-function TabelaAlunos(props) {
+function TabelaAlunos({setIsOpen}) {
 
     const {dataTable, setDataTable} = useContext(AlunoContext)
 
@@ -30,23 +30,33 @@ function TabelaAlunos(props) {
 
                         { dataTable.length == 0 ?  data.data.alunos.map(aluno => (
                             <tr key={aluno.RA}>
+
                                 <td className='py-4'>{aluno.RA} </td>
+
                                 <td>{aluno.nome}</td>
+
                                 <td>{aluno.CPF}</td>
+
                                 <td>
                                     <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
-                                    <Link>[Excluir]</Link>
+                                    <button onClick={()=>setIsOpen(true)}>[Excluir]</button>
                                 </td>
+
                             </tr>
                         )) :  dataTable.alunos.map(aluno => (
                             <tr key={aluno.RA}>
+
                                 <td className='py-4'>{aluno.RA} </td>
+
                                 <td>{aluno.nome}</td>
+
                                 <td>{aluno.CPF}</td>
+
                                 <td>
-                            <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
-                                    <Link>[Excluir]</Link>
+                                    <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
+                                    <button onClick={()=>setIsOpen(true)}>[Excluir]</button>
                                 </td>
+                                
                             </tr>
                         ))}
                         
