@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import useGetAlunos from '../../hooks/useGetAlunos';
 import { Link } from 'react-router-dom';
 import { AlunoContext } from '../../contexts/AlunoContext';
+import ModalDelete from './ModalDelete';
 
-function TabelaAlunos({setIsOpen}) {
+function TabelaAlunos({prop}) {
 
     const {dataTable, setDataTable} = useContext(AlunoContext)
-
     const {data, error, isLoading} = useGetAlunos()
+    
+    const [ isOpen, setIsOpen] = useState(false)
+
+    const [raAlunoToDelete, setRaAlunoToDelete] = useState()
 
     if(isLoading){
         return (
@@ -39,7 +43,10 @@ function TabelaAlunos({setIsOpen}) {
 
                                 <td>
                                     <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
-                                    <button onClick={()=>setIsOpen(true)}>[Excluir]</button>
+                                    <button onClick={()=>{
+                                        setRaAlunoToDelete(aluno.RA)
+                                        setIsOpen(true)
+                                    }}>[Excluir]</button>
                                 </td>
 
                             </tr>
@@ -54,7 +61,10 @@ function TabelaAlunos({setIsOpen}) {
 
                                 <td>
                                     <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
-                                    <button onClick={()=>setIsOpen(true)}>[Excluir]</button>
+                                    <button onClick={()=>{
+                                        setRaAlunoToDelete(aluno.RA)
+                                        setIsOpen(true)
+                                    }}>[Excluir]</button>
                                 </td>
                                 
                             </tr>
@@ -62,6 +72,9 @@ function TabelaAlunos({setIsOpen}) {
                         
                     </tbody>
                 </table>
+
+                { isOpen ? <ModalDelete setIsOpen={setIsOpen} raAluno={raAlunoToDelete} /> : <></>  }
+
         </section>
     );
 }

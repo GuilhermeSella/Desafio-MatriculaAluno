@@ -6,7 +6,9 @@ const useDeleteAluno = (raAluno)=>{
     const mutation = useMutation({
         mutationFn : async()=>{
             return axios.delete(`http://localhost:8000/aluno/${raAluno}`)
-            .then((res)=>{console.log(res)})
+            .then((res)=>{
+                location.href = "/consultaAlunos";
+            })
         }
     })
 

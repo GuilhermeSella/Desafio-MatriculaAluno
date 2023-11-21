@@ -5,7 +5,7 @@ import ModalDelete from '../components/consulta/ModalDelete';
 
 function consultaAlunos(props) {
 
-    const [ isOpen, setIsOpen] = useState(false)
+    
     
 
     return (
@@ -22,11 +22,11 @@ function consultaAlunos(props) {
 
             <TabelaAlunos
 
-                setIsOpen={setIsOpen}
+               
 
              />
 
-            { isOpen ? <ModalDelete  setIsOpen={setIsOpen} /> : <></>  }
+            
 
              
 
