@@ -26,7 +26,7 @@ const routes = createBrowserRouter([
         element: <CadastroAlunos />
       },
       {
-        path:"/editarAluno/:nome/:email/:ra/:cpf",
+        path:"/editarAluno/:ra",
         element: <EditarAluno />
       }
     ]

@@ -42,7 +42,7 @@ function TabelaAlunos({prop}) {
                                 <td>{aluno.CPF}</td>
 
                                 <td>
-                                    <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
+                                    <Link to={`/editarAluno/${aluno.RA}`}>[Editar]</Link>
                                     <button onClick={()=>{
                                         setRaAlunoToDelete(aluno.RA)
                                         setIsOpen(true)
@@ -50,6 +50,7 @@ function TabelaAlunos({prop}) {
                                 </td>
 
                             </tr>
+                            
                         )) :  dataTable.alunos.map(aluno => (
                             <tr key={aluno.RA}>
 
@@ -60,7 +61,7 @@ function TabelaAlunos({prop}) {
                                 <td>{aluno.CPF}</td>
 
                                 <td>
-                                    <Link to={`/editarAluno/${aluno.nome}/${aluno.email}/${aluno.RA}/${aluno.CPF}`}>[Editar]</Link>
+                                    <Link to={`/editarAluno/${aluno.RA}`}>[Editar]</Link>
                                     <button onClick={()=>{
                                         setRaAlunoToDelete(aluno.RA)
                                         setIsOpen(true)

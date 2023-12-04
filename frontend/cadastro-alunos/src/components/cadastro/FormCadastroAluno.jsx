@@ -2,13 +2,15 @@ import React, { useContext } from 'react';
 import { AlunoContext } from '../../contexts/AlunoContext';
 import useSubmitAluno from '../../hooks/useSubmitAluno'
 import { Link } from 'react-router-dom';
-
-
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 function FormCadastroAluno(props) {
 
     const {nomeAluno, emailAluno, raAluno, cpfAluno} = useContext(AlunoContext);
 
     const {mutation} = useSubmitAluno();
+
+    
 
 
     return (
@@ -37,7 +39,11 @@ function FormCadastroAluno(props) {
 
             <div className='flex items-center gap-10 justify-items-end'>
                 <Link to={"/consultaAlunos"} className='py-2.5 px-3.5 bg-zinc-200 rounded'>Cancelar</Link>
-                <button onClick={()=>mutation.mutate()} className='py-2.5 px-3.5 bg-zinc-300 rounded'>Salvar</button>
+                <button onClick={()=>{
+                    
+                    mutation.mutate()
+                    
+                }} className='py-2.5 px-3.5 bg-zinc-300 rounded'>Salvar</button>
             </div>
 
 

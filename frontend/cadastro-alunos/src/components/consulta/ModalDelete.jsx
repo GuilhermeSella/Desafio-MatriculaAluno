@@ -1,9 +1,12 @@
 import React from 'react';
 import useDeleteAluno from '../../hooks/useDeleteAluno';
+import { toast, ToastContainer } from 'react-toastify';
 
 function ModalDelete({setIsOpen, raAluno}) {
 
     const mutation = useDeleteAluno(raAluno)
+
+    
 
     return (
 
@@ -26,7 +29,13 @@ function ModalDelete({setIsOpen, raAluno}) {
                     </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                    <button type="button" className="inline-flex w-full justify-center rounded-md bg-zinc-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-500 sm:ml-3 sm:w-auto" onClick={()=>mutation.mutate()}>Excluir</button>
+                    <button type="button" className="inline-flex w-full justify-center rounded-md bg-zinc-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-500 sm:ml-3 sm:w-auto" onClick={()=>{
+                        setIsOpen(false)
+                        mutation.mutate()
+                        location.href="/consultaAlunos";
+                        
+                    }}>Excluir</button>
+                   
                     <button type="button" className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
                     onClick={()=>setIsOpen(false)}
                     >Cancelar</button>
@@ -34,6 +43,7 @@ function ModalDelete({setIsOpen, raAluno}) {
                 </div>
                 </div>
             </div>
+                    
             </div>
 
     );

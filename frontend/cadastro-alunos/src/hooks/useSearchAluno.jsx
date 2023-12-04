@@ -10,7 +10,7 @@ const useSearchAluno = ()=>{
 
     const mutation = useMutation({
         mutationFn : async()=>{
-            return axios.get(`http://localhost:8000/aluno/${nomeAlunoSearch.current.value}`)
+            return axios.get(`http://localhost:8000/alunos/${nomeAlunoSearch.current.value}`)
             .then((res)=>setDataTable(res.data))
         }
     })

@@ -1,8 +1,11 @@
-import { useContext } from "react";
-import { useMutation } from "react-query";
+import { useContext, useState } from "react";
+import { useMutation, useQuery } from "react-query";
 import { AlunoContext } from "../contexts/AlunoContext";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+
+
 
 
 const useUpdateAluno = (inputNome,inputEmail)=>{
@@ -17,13 +20,14 @@ const useUpdateAluno = (inputNome,inputEmail)=>{
                 nome:inputNome,
                 email:inputEmail,
             })
-            .then((res)=>console.log(res.data))
+            .then((res)=>toast.success("Dados atualizados!"))
         }
     })
 
     return mutation
 
 }
+
 
 
 export default useUpdateAluno;

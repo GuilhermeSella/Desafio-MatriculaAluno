@@ -24,6 +24,21 @@ class UserController{
         return res.status(200).json({"message":"Alunos encontrados:", alunos})
     }
 
+
+    static async ListarAlunoPorRA(req,res){
+
+        const RA = req.params.RA;
+
+        const aluno = await Aluno.findOne({
+            where:{
+                RA: RA
+            }
+        })
+
+        return res.status(200).json(aluno)
+    }
+
+
     static async CadastrarAluno(req,res){
         const {nome, email, RA, CPF} = req.body;
 

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AlunoContext } from "../contexts/AlunoContext";
 import { useMutation, useQuery } from "react-query";
+import { toast, ToastContainer } from 'react-toastify';
 import axios from "axios";
 
 const useSubmitAluno = ()=>{
@@ -15,7 +16,13 @@ const useSubmitAluno = ()=>{
                 RA: raAluno.current.value,
                 CPF: cpfAluno.current.value
             })
-            .then((res)=>console.log(res.data))
+            .then( (res)=>{
+                toast.success("Cadastrado!")
+                nomeAluno.current.value = ""
+                emailAluno.current.value = ""
+                raAluno.current.value = ""
+                cpfAluno.current.value = ""
+            })
         }
     })
 

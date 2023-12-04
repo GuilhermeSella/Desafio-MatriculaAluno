@@ -7,7 +7,10 @@ const AlunoController = require("../controllers/AlunoController")
 
 router.get("/alunos", AlunoController.ListarAlunos)
 
-router.get("/aluno/:nomeAluno", AlunoController.ListarAlunoPorNome )
+
+router.get("/alunos/:nomeAluno", AlunoController.ListarAlunoPorNome)
+
+router.get("/aluno/:RA", AlunoController.ListarAlunoPorRA)
 
 router.post("/aluno", AlunoController.CadastrarAluno)
 
